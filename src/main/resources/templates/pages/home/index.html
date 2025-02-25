@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<!-- Hlavní stránka aplikace -->
+ <body>
+    <header th:replace="~{fragments/layout.html :: header}"></header>
+
+    <article class="container mt-4">
+        <header>
+            <h1>O aplikaci</h1>
+        </header>
+
+        <section>
+            <p>Vítejte v aplikaci PojištěníApp.
+
+                PojištěníApp je můj závěrečný projekt rekvalifikačního kurzu programování v jazyce JAVA. Smyslem aplikace je vytváření, ukládání, úprava a mazání pojištěnců a informací o nich. Aplikace pracuje s databází a úmožňuje se uživateli registrovat.
+            </p>
+        </section>
+    </article>
+
+    <!-- Patička -->
+    <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+ </body>
+</html>

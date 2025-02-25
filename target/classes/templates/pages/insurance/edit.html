@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+ <!-- Šablona pro editaci pojištění -->
+ <body>
+  <header th:replace="~{fragments/layout.html :: header}"></header>
+
+  <article class="container mt-4">
+   <header>
+     <h1>Editace pojištění</h1>
+    </header>
+
+   <section>
+      <!-- Formulář -->
+      <form
+            method="post"
+            th:action="@{/insurance/edit/{id}(id=${insuranceId})}"
+            th:object="${insuranceDTO}">
+
+        <!-- Levý sloupec -->
+        <div class="row">
+         <div class="col-md-6">
+          <label for="name" class="control-label mt-3">Název pojištění</label>
+          <input id="name" th:field="*{name}" class="form-control" />
+          <small class="text-danger d-block mt-1" th:errors="*{name}"></small>
+
+          <label for="information" class="control-label mt-3">Informace k použití pojištění</label>
+          <textarea id="information" th:field="*{information}" class="form-control" rows="3" ></textarea>
+          <small class="text-danger d-block mt-1" th:errors="*{information}"></small>
+
+          <label for="price" class="control-label mt-3">Částka</label>
+          <input id="price" th:field="*{price}" class="form-control" />
+          <small class="text-danger d-block mt-1" th:errors="*{price}"></small>
+         </div>
+
+         <!-- Pravý sloupec -->
+         <div class="col-md-6">
+          <label for="subject" class="control-label mt-3">Předmět pojištění</label>
+          <input id="subject" th:field="*{subject}" class="form-control" />
+          <small class="text-danger d-block mt-1" th:errors="*{subject}"></small>
+
+          <label for="valid" class="control-label mt-3">Začátek pojištění</label>
+          <input id="valid" th:field="*{valid}" class="form-control" />
+          <small class="text-danger d-block mt-1" th:errors="*{valid}"></small>
+
+          <label for="expiration" class="control-label mt-3">Ukončení pojištění</label>
+          <input id="expiration" th:field="*{expiration}" class="form-control" />
+          <small class="text-danger d-block mt-1" th:errors="*{expiration}"></small>
+        </div>
+      </div>
+
+      <!-- Tlačítko-->
+      <div class="row mt-3">
+        <div class="col-md-6 offset-md-6">
+          <button type="submit" class="ulozit-tlacitko">Uložit</button>
+        </div>
+      </div>
+    </form>
+  </section>
+ </article>
+
+  <!-- Patička -->
+  <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+ </body>
+</html>

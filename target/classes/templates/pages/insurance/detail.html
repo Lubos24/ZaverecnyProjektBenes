@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+  <!-- Šablona pro vykreslení detailu pojištění -->
+ <body>
+  <header th:replace="~{fragments/layout.html :: header}"></header>
+
+   <article class="container mt-4">
+    <div id="centrovac">
+        <section>
+            <h2 class="mt-4">Pojištění</h2>
+
+            <!-- Detail pojištění -->
+            <table class="table table-striped table-hover">
+                  <thead>
+                    <tr>
+                       <th>Pojištění</th>
+                       <th>Informace</th>
+                       <th>Částka</th>
+                       <th>Předmět pojištění</th>
+                       <th>Začátek</th>
+                       <th>Konec</th>
+                    </tr>
+                  </thead>
+                <tbody>
+                    <tr th:each="insurance : ${insurance}">
+                       <td th:text="${insurance.name}"></td>
+                       <td th:text="${insurance.information}"></td>
+                       <td th:text="${insurance.price}"></td>
+                       <td th:text="${insurance.subject}"></td>
+                       <td th:text="${insurance.valid}"></td>
+                       <td th:text="${insurance.expiration}"></td>
+                       <td>
+                       <!-- Tlačítka pro úpravu -->
+                       <p sec:authorize="hasRole('ADMIN')">
+                            <a th:href="@{/insurance/edit/{id}(id=${insurance.insuranceId})}" class="btn btn-warning btn-sm">Editovat</a>
+                            <a th:href="@{/insurance/delete/{id}(id=${insurance.insuranceId})}" class="btn btn-danger btn-sm"
+                               onclick="return confirm('Opravdu chcete odstranit toto pojištění?')">Odstranit</a>
+                       </p>
+                       </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+   </article>
+
+   <!-- Patička -->
+   <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+ </body>
+</html>

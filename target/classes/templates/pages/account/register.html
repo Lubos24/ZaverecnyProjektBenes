@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<!-- Šablona pro vykreslení registračního formuláře -->
+ <body>
+   <header th:replace="~{fragments/layout.html :: header}"></header>
+
+<!-- Flash messages -->
+   <div class="py-2 flash-message message-error" th:text="${error}" th:if="${error}"></div>
+
+<!-- Obsah stránky s formulářem -->
+   <article class="container mt-4">
+      <div id="centrovac">
+        <header>
+            <h1>Registrace</h1>
+        </header>
+
+        <!-- Formulář -->
+        <section>
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4">
+                    <form th:action="@{/account/register}" th:object="${userDTO}" method="post" class="d-flex flex-column gap-2">
+                        <div class="form-group">
+                            <label for="email">Uživatelský email</label>
+                            <input id="email" name="email" th:field="*{email}" class="form-control" placeholder="jan@seznam.cz"/>
+                            <small class="text-danger" th:errors="*{email}"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Heslo</label>
+                            <input id="password" name="password" type="password" th:field="*{password}" class="form-control" placeholder="******"/>
+                            <small class="text-danger" th:errors="*{password}"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-password">Zadejte heslo znovu</label>
+                            <input id="confirm-password" name="password" type="password" th:field="*{confirmPassword}" class="form-control" placeholder="******"/>
+                            <small class="text-danger" th:errors="*{confirmPassword}"></small>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="clanky-tlacitko align-self-start">Registrovat</button>
+                        </div>
+                        <div class="form-group">
+                            <p>
+                                <!-- Tlačítko -->
+                                <a th:href="@{/account/login}">Přihlásit se</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+      </div>
+   </article>
+
+   <!-- Patička -->
+   <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+ </body>
+</html>

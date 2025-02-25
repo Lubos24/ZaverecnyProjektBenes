@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<!-- Šablona pro vykreslení pojištěnce -->
+ <body>
+  <header th:replace="~{fragments/layout.html :: header}"></header>
+
+  <article class="container mt-4">
+    <header>
+        <h1>Editace pojištěnce</h1>
+    </header>
+
+      <section>
+        <!-- Formulář -->
+        <form
+                method="post"
+                th:action="@{/insured/edit/{id}(id=${insuredId})}"
+                th:object="${insuredDTO}">
+
+            <div class="row">
+                <!-- Levý sloupec -->
+                <div class="col-md-6">
+                    <label for="name" class="control-label mt-3">Jméno</label>
+                    <input id="name" th:field="*{name}" class="form-control" />
+                    <small class="text-danger d-block mt-1" th:errors="*{name}"></small>
+
+                    <label for="email" class="control-label mt-3">Email</label>
+                    <input id="email" th:field="*{email}" class="form-control" />
+                    <small class="text-danger d-block mt-1" th:errors="*{email}"></small>
+
+                    <label for="address" class="control-label mt-3">Adresa</label>
+                    <input id="address" th:field="*{address}" class="form-control" />
+                    <small class="text-danger d-block mt-1" th:errors="*{address}"></small>
+                </div>
+
+                <!-- Pravý sloupec -->
+                 <div class="col-md-6">
+                    <label for="surname" class="control-label mt-3">Příjmení</label>
+                    <input id="surname" th:field="*{surname}" class="form-control" />
+                    <small class="text-danger d-block mt-1" th:errors="*{surname}"></small>
+
+                    <label for="phone" class="control-label mt-3">Telefon</label>
+                    <input id="phone" th:field="*{phone}" class="form-control" />
+                    <small class="text-danger d-block mt-1" th:errors="*{phone}"></small>
+
+                    <label for="city" class="control-label mt-3">Město</label>
+                    <input id="city" th:field="*{city}" class="form-control" />
+                    <small class="text-danger d-block mt-1" th:errors="*{city}"></small>
+
+                    <label for="postcode" class="control-label mt-3">PSČ</label>
+                    <input id="postcode" th:field="*{postcode}" class="form-control" />
+                    <small class="text-danger d-block mt-1" th:errors="*{postcode}"></small>
+                 </div>
+            </div>
+
+            <!-- Tlačítko -->
+            <div class="row mt-3">
+                <div class="col-md-6 offset-md-6">
+                    <button type="submit" class="ulozit-tlacitko">Uložit</button>
+                </div>
+            </div>
+        </form>
+    </section>
+  </article>
+
+  <!-- Patička -->
+  <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+ </body>
+</html>

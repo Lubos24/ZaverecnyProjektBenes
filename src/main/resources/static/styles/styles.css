@@ -1,0 +1,177 @@
+@font-face {
+    font-family: "Inter";
+    src: url("/../fonts/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+    font-weight: 100 900;
+}
+
+html {
+    background: #2a2b2b;
+}
+
+body {
+    font: 16px "Inter" !important;
+    background: #e9e8eb;
+    color: black;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 200px 0 0 0;
+    min-width: 960px;
+}
+
+body > header {
+    height: 80px;
+    width: 100%;
+    padding: 0 20px; 
+    background: #2a2b2b;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+}
+
+#logo {
+    height: 60px;
+    margin-right: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60px;
+}
+
+#logo a {
+    text-decoration: none;
+    color: white;
+}
+
+#logo > * {
+    margin: 0;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+nav ul li {
+    padding: 15px;
+    font-size: 1em;
+    line-height: 1.5em;
+}
+
+nav ul a {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    padding: 0 10px 0 10px;
+    transition: all 0.3s ease;
+}
+
+nav ul a:hover,
+.aktivni a {
+   background: rgb(108, 106, 106);
+   padding: 10px;
+   border-radius: 20px;
+}
+
+article {
+    margin: 0 0 100px 0;
+    padding: 50px 50px 10px 50px;
+    max-width: 960px;
+}
+
+article h1, h2 {
+    margin: 0;
+    padding: 0;
+    font-size: 3.5em;
+    font-weight: bold;
+}
+
+#centrovac {
+    margin: 0;
+    max-width: 960px;
+}
+
+.cistic {
+    clear: both;
+}
+
+footer {
+    box-sizing: border-box;
+    text-align: center;
+    height: 100px;
+    color: white;
+    background: #2a2b2b;
+    padding: 50px 0 0 0;
+    clip-path: polygon(0 32%, 0 100%, 105% 100%, 105% 35%, 69% 0);
+}
+
+/* Ošetření barvy tlačítek kvůli bootstrapu */
+a:hover {
+    color: currentColor;
+}
+
+.pridat-tlacitko,
+.editovat-tlacitko,
+.odstranit-tlacitko,
+.ulozit-tlacitko {
+    color: white;
+    font-size: 1em;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+.pridat-tlacitko,
+.ulozit-tlacitko {
+    background: blue;
+}
+
+.editovat-tlacitko {
+    background: yellow;
+}
+
+.odstranit-tlacitko {
+    background: red;
+}
+
+#udalosti li h2 a,
+#pojisteni li h2 a,
+#pojistenci li h2 a {
+    color: #010609;
+    text-decoration: none;
+}
+
+/* Úprava podbarvení tlačítek po najetí myši kvůli bootstrapu */
+.pridat-tlacitko,
+.odstranit-tlacitko,
+.editovat-tlacitko,
+.ulozit-tlacitko {
+    color: white;
+    filter: brightness(105%) contrast(75%);
+    border: 0;
+}
+
+/* Úprava pro Flash messages */
+.flash-message {
+    text-align: center;
+    color: white;
+    width: 100%;
+    margin: 0
+    padding: 10px 0;
+}
+
+.message-success {
+    background: #70b73a;
+}
+
+.message-error {
+    background: #d41400;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+ <!-- Šablona pro vykreslování pojištění -->
+ <body>
+  <header th:replace="~{fragments/layout.html :: header}"></header>
+
+<!-- Flash Messages -->
+<div class="py-2 flash-message message-success" th:text="${success}" th:if="${success}"></div>
+<div class="py-2 flash-message message-error" th:text="${error}" th:if="${error}"></div>
+
+
+
+<article class="container mt-4">
+    <header>
+        <h1>Pojištění</h1>
+    </header>
+
+    <section>
+        <div id="centrovac">
+            <div>
+                <div class="container d-flex justify-content-center mt-5">
+                    <p sec:authorize="hasRole('ADMIN')">
+                      <a class="pridat-tlacitko" th:href="@{/insurance/create}">Nové pojištění</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pojištění -->
+        <div class="container mt-4">
+            <table class="table table-striped table-hover">
+                 <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Pojištění</th>
+                    <th>Částka</th>
+                    <th></th>
+                  </tr>
+                 </thead>
+                <tbody>
+                <tr th:each="insurance, iterStat : ${insurance}">
+                    <td th:text="${iterStat.index + 1}">1</td>
+                    <td><a th:href="@{'/insurance/' + ${insurance.insuranceId}}" th:text="${insurance.name}">Pojištění</a></td>
+                    <td th:text="${insurance.price}">Částka</td>
+
+                    <td>
+                        <p sec:authorize="hasRole('ADMIN')">
+                        <a th:href="@{/insurance/edit/{id}(id=${insurance.insuranceId})}" class="btn btn-warning btn-sm">Editovat</a>
+                        <a th:href="@{/insurance/delete/{id}(id=${insurance.insuranceId})}" class="btn btn-danger btn-sm"
+                           onclick="return confirm('Opravdu chcete odstranit toto pojištění?')">Odstranit</a>
+                        </p>
+                    </td>
+                 </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+  </article>
+
+    <!-- Patička -->
+    <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+ </body>
+</html>

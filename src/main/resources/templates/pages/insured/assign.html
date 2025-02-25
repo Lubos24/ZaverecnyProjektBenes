@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="cs-cz" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="~{fragments/layout.html :: head}"></head>
+
+<!-- Šablona pro vykreslování přiřazení pojištění k pojištěncům -->
+ <body>
+  <header th:replace="~{fragments/layout.html :: header}"></header>
+
+  <article>
+    <section>
+        <h2 class="mt-4">
+            Přidat pojištění k <span th:each="insured, iterStat : ${insured}" th:text="${insured.name + ' ' + insured.surname}"></span>
+        </h2>
+
+        <!-- Formulář -->
+        <form
+                method="post"
+                th:action="@{/insured/assign/{id}(id=${insuredId})}"
+                th:object="${insuranceDTO}">
+
+         <!-- Výběr pojištění -->
+         <div class="row">
+          <div class="col-md-12">
+            <label for="insuranceSelect">Vyber pojištění:</label>
+            <select id="insuranceSelect" th:field="*{insuranceId}" required>
+                <option th:each="insurance : ${insurance}"
+                        th:value="${insurance.insuranceId}"
+                        th:text="${insurance.insuranceId + ' ' + insurance.name + ' (' + insurance.subject + ', ' + insurance.price + ' Kč, od ' + insurance.valid + ', do ' + insurance.expiration + ')'}">
+                </option>
+            </select>
+           </div>
+         </div>
+
+            <!-- Tlačítko -->
+            <div class="row mt-3">
+                <div class="col-md-6 offset-md-6">
+                     <button type="submit" class="ulozit-tlacitko">Uložit</button>
+                </div>
+            </div>
+        </form>
+    </section>
+  </article>
+
+  <!-- Patička -->
+  <footer th:replace="~{fragments/layout.html :: footer}"></footer>
+ </body>
+</html>
